@@ -52,7 +52,6 @@ public class Game {
         System.out.println("Es el jugador número " + jugadores.size());
 
 
-
         return true;
     }
 
@@ -69,12 +68,7 @@ public class Game {
                 estaSaliendoDeLaCarcel = true;
 
                 System.out.println(jugadores.get(jugadorActual) + " sale de la casilla de castigo");
-                posiciones[jugadorActual] = posiciones[jugadorActual] + puntosDado;
-                if (posiciones[jugadorActual] > 11) posiciones[jugadorActual] = posiciones[jugadorActual] - 12;
-
-                System.out.println(nuevaPosicionJugador());
-                System.out.println("La categoría es " + categoriaActual());
-                hacerPregunta();
+                siguienteJugador(puntosDado);
             } else {
                 System.out.println(jugadores.get(jugadorActual) + " no sale de la casilla de castigo");
                 estaSaliendoDeLaCarcel = false;
@@ -82,25 +76,17 @@ public class Game {
 
         } else {
 
-            posiciones[jugadorActual] = posiciones[jugadorActual] + puntosDado;
-            if (posiciones[jugadorActual] > 11) posiciones[jugadorActual] = posiciones[jugadorActual] - 12;
-
-            System.out.println(nuevaPosicionJugador());
-            System.out.println("La categoría es " + categoriaActual());
-            hacerPregunta();
+            siguienteJugador(puntosDado);
         }
 
     }
 
+
     private void hacerPregunta() {
-        if (categoriaActual() == "Cultura popular")
-            System.out.println(preguntasCultura.removeFirst());
-        if (categoriaActual() == "Ciencias")
-            System.out.println(preguntasCiencias.removeFirst());
-        if (categoriaActual() == "Deportes")
-            System.out.println(preguntasDeportes.removeFirst());
-        if (categoriaActual() == "Música")
-            System.out.println(preguntasMusica.removeFirst());
+        if (categoriaActual() == "Cultura popular") System.out.println(preguntasCultura.removeFirst());
+        if (categoriaActual() == "Ciencias") System.out.println(preguntasCiencias.removeFirst());
+        if (categoriaActual() == "Deportes") System.out.println(preguntasDeportes.removeFirst());
+        if (categoriaActual() == "Música") System.out.println(preguntasMusica.removeFirst());
     }
 
 
@@ -123,10 +109,7 @@ public class Game {
                 enCasillaCastigo[jugadorActual] = false;
                 System.out.println("Respuesta correcta!!!!");
                 monederos[jugadorActual]++;
-                System.out.println(jugadores.get(jugadorActual)
-                        + " ahora tiene "
-                        + monederos[jugadorActual]
-                        + " monedas doradas.");
+                System.out.println(jugadores.get(jugadorActual) + " ahora tiene " + monederos[jugadorActual] + " monedas doradas.");
 
                 boolean ganador = jugadorHaGanado();
                 jugadorActual++;
@@ -144,10 +127,7 @@ public class Game {
 
             System.out.println("Respuesta correcta!!!!");
             monederos[jugadorActual]++;
-            System.out.println(jugadores.get(jugadorActual)
-                    + " ahora tiene "
-                    + monederos[jugadorActual]
-                    + " monedas doradas.");
+            System.out.println(jugadores.get(jugadorActual) + " ahora tiene " + monederos[jugadorActual] + " monedas doradas.");
 
             boolean ganador = jugadorHaGanado();
             jugadorActual++;
@@ -173,9 +153,15 @@ public class Game {
     }
 
     public String nuevaPosicionJugador() {
-        return "La nueva posición de "
-                + jugadores.get(jugadorActual)
-                + " es "
-                + posiciones[jugadorActual];
+        return "La nueva posición de " + jugadores.get(jugadorActual) + " es " + posiciones[jugadorActual];
+    }
+
+    private void siguienteJugador(int puntosDado) {
+        posiciones[jugadorActual] = posiciones[jugadorActual] + puntosDado;
+        if (posiciones[jugadorActual] > 11) posiciones[jugadorActual] = posiciones[jugadorActual] - 12;
+
+        System.out.println(nuevaPosicionJugador());
+        System.out.println("La categoría es " + categoriaActual());
+        hacerPregunta();
     }
 }

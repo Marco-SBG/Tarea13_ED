@@ -30,7 +30,8 @@ public class GameLauncher {
 
 
 
-        } while (noGanador);
+        }
+        while (noGanador);
 
     }
 }

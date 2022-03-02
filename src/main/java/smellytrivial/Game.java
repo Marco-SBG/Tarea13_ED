@@ -120,6 +120,7 @@ public class Game {
     public boolean fueRespuestaCorrecta() {
         if (enCasillaCastigo[jugadorActual]) {
             if (estaSaliendoDeLaCarcel) {
+                enCasillaCastigo[jugadorActual] = false;
                 System.out.println("Respuesta correcta!!!!");
                 monederos[jugadorActual]++;
                 System.out.println(jugadores.get(jugadorActual)

@@ -31,12 +31,15 @@ public class Game {
     }
 
     public boolean esJugable() {
-        return (cuantosJugadores() >= 2);
+        if (cuantosJugadores()<2){
+            System.out.println("El número de jugadores es inferior a 2. Por favor, añada otro jugador.");
+            return false;
+        }
+
+        return true;
     }
 
     public boolean agregar(String playerName) {
-
-
         jugadores.add(playerName);
         posiciones[cuantosJugadores()] = 0;
         monederos[cuantosJugadores()] = 0;
@@ -48,40 +51,39 @@ public class Game {
     }
 
     public int cuantosJugadores() {
-        return jugadores.size();
-    }
+        return jugadores.size();}
 
     public void tirarDado(int puntosDado) {
-        System.out.println(jugadores.get(jugadorActual) + " es el jugador actual");
-        System.out.println("Ha sacado un " + puntosDado);
+            System.out.println(jugadores.get(jugadorActual) + " es el jugador actual");
+            System.out.println("Ha sacado un " + puntosDado);
 
-        if (enCasillaCastigo[jugadorActual]) {
-            if (puntosDado % 2 != 0) {
-                estaSaliendoDeLaCarcel = true;
+            if (enCasillaCastigo[jugadorActual]) {
+                if (puntosDado % 2 != 0) {
+                    estaSaliendoDeLaCarcel = true;
 
-                System.out.println(jugadores.get(jugadorActual) + " sale de la casilla de castigo");
+                    System.out.println(jugadores.get(jugadorActual) + " sale de la casilla de castigo");
+                    posiciones[jugadorActual] = posiciones[jugadorActual] + puntosDado;
+                    if (posiciones[jugadorActual] > 11) posiciones[jugadorActual] = posiciones[jugadorActual] - 12;
+
+                    System.out.println(nuevaPosicionJugador());
+                    System.out.println("La categoría es " + categoriaActual());
+                    hacerPregunta();
+                } else {
+                    System.out.println(jugadores.get(jugadorActual) + " no sale de la casilla de castigo");
+                    estaSaliendoDeLaCarcel = false;
+                }
+
+            } else {
+
                 posiciones[jugadorActual] = posiciones[jugadorActual] + puntosDado;
                 if (posiciones[jugadorActual] > 11) posiciones[jugadorActual] = posiciones[jugadorActual] - 12;
 
                 System.out.println(nuevaPosicionJugador());
                 System.out.println("La categoría es " + categoriaActual());
                 hacerPregunta();
-            } else {
-                System.out.println(jugadores.get(jugadorActual) + " no sale de la casilla de castigo");
-                estaSaliendoDeLaCarcel = false;
             }
 
-        } else {
-
-            posiciones[jugadorActual] = posiciones[jugadorActual] + puntosDado;
-            if (posiciones[jugadorActual] > 11) posiciones[jugadorActual] = posiciones[jugadorActual] - 12;
-
-            System.out.println(nuevaPosicionJugador());
-            System.out.println("La categoría es " + categoriaActual());
-            hacerPregunta();
         }
-
-    }
 
     private void hacerPregunta() {
         if (categoriaActual() == "Cultura popular")

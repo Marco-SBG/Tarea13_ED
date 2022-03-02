@@ -17,7 +17,7 @@ public class TrivialTests {
     public void si_al_principio_un_1_voy_a_casilla_1() {
         //Arrange
         Game sut = new Game();
-        sut.agregar("Maria");
+        sut.agregar("María");
         sut.agregar("Juan");
 
         sut.tirarDado(1);
@@ -29,5 +29,11 @@ public class TrivialTests {
 
         //Assert
         Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    public void si_hay_menos_de_2_jugadores_no_es_jugable(){
+        Game sut = new Game();
+        sut.agregar("Maria");
+        Assertions.assertFalse(sut.esJugable());
     }
 }

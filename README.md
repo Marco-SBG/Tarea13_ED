@@ -11,3 +11,5 @@
 ### He editado el programa para que el juego acabe cuando ganador = true.
 ## Tarea 5: 
 ### He creado un método llamado siguienteJugador para evitar la duplicidad.
+## Tarea 6: 
+### He creado un método llamado respuestaCorrecta para evitar la duplicidad en el método fueRespuestaCorrecta.

@@ -19,6 +19,9 @@ public class Game {
 
     public Game() {
         for (int i = 0; i < 50; i++) {
+            if (i == 49){
+                i=0;
+            }
             preguntasCultura.addLast("Pregunta de Cultura " + i);
             preguntasCiencias.addLast(("Pregunta de Ciencias " + i));
             preguntasDeportes.addLast(("Pregunta de Deportes " + i));

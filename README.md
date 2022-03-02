@@ -13,3 +13,5 @@
 ### He creado un método llamado siguienteJugador para evitar la duplicidad.
 ## Tarea 6: 
 ### He creado un método llamado respuestaCorrecta para evitar la duplicidad en el método fueRespuestaCorrecta.
+## Tarea 7: 
+### He creado un bucle para que el número de la pregunta nunca llegue al máximo, cuando sólo le falte 1 pregunta vuelve al principio.

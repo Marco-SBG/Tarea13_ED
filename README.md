@@ -9,3 +9,5 @@
 ### He editado el método "fueRespuestaCorrecta" para que si el jugador saca un número impar, este automáticamente salga de la casilla de castigo.
 ## Tarea 4: 
 ### He editado el programa para que el juego acabe cuando ganador = true.
+## Tarea 5: 
+### He creado un método llamado siguienteJugador para evitar la duplicidad.

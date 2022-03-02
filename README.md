@@ -7,3 +7,5 @@
 ### He editado el método "es_jugable" para que devuelva false si el número de jugadores es mayor que 6. Además he creado un try catch en los tests para que no salte el error de ArrayIndexOutOfBounds.
 ## Tarea 3: 
 ### He editado el método "fueRespuestaCorrecta" para que si el jugador saca un número impar, este automáticamente salga de la casilla de castigo.
+## Tarea 4: 
+### He editado el programa para que el juego acabe cuando ganador = true.

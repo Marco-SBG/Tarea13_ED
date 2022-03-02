@@ -5,9 +5,9 @@ import java.util.LinkedList;
 
 public class Game {
     ArrayList jugadores = new ArrayList();
-    int[] posiciones = new int[6];
-    int[] monederos = new int[6];
-    boolean[] enCasillaCastigo = new boolean[6];
+    int[] posiciones = new int[7];
+    int[] monederos = new int[7];
+    boolean[] enCasillaCastigo = new boolean[7];
 
     LinkedList preguntasCultura = new LinkedList();
     LinkedList preguntasCiencias = new LinkedList();
@@ -17,7 +17,7 @@ public class Game {
     int jugadorActual = 0;
     boolean estaSaliendoDeLaCarcel;
 
-    public  Game(){
+    public Game() {
         for (int i = 0; i < 50; i++) {
             preguntasCultura.addLast("Pregunta de Cultura " + i);
             preguntasCiencias.addLast(("Pregunta de Ciencias " + i));
@@ -26,16 +26,19 @@ public class Game {
         }
     }
 
-    public String crearPreguntaMusica(int index){
+    public String crearPreguntaMusica(int index) {
         return "Pregunta de Música " + index;
     }
 
     public boolean esJugable() {
-        if (cuantosJugadores()<2){
+        if (cuantosJugadores() < 2) {
             System.out.println("El número de jugadores es inferior a 2. Por favor, añada otro jugador.");
             return false;
         }
-
+        if (cuantosJugadores() >= 7) {
+            System.out.println("El número de jugadores es superior a 6. Por favor, reduzca el número de jugadores.");
+            return false;
+        }
         return true;
     }
 
@@ -47,43 +50,47 @@ public class Game {
 
         System.out.println(playerName + " se ha unido a la partida");
         System.out.println("Es el jugador número " + jugadores.size());
+
+
+
         return true;
     }
 
     public int cuantosJugadores() {
-        return jugadores.size();}
+        return jugadores.size();
+    }
 
     public void tirarDado(int puntosDado) {
-            System.out.println(jugadores.get(jugadorActual) + " es el jugador actual");
-            System.out.println("Ha sacado un " + puntosDado);
+        System.out.println(jugadores.get(jugadorActual) + " es el jugador actual");
+        System.out.println("Ha sacado un " + puntosDado);
 
-            if (enCasillaCastigo[jugadorActual]) {
-                if (puntosDado % 2 != 0) {
-                    estaSaliendoDeLaCarcel = true;
+        if (enCasillaCastigo[jugadorActual]) {
+            if (puntosDado % 2 != 0) {
+                estaSaliendoDeLaCarcel = true;
 
-                    System.out.println(jugadores.get(jugadorActual) + " sale de la casilla de castigo");
-                    posiciones[jugadorActual] = posiciones[jugadorActual] + puntosDado;
-                    if (posiciones[jugadorActual] > 11) posiciones[jugadorActual] = posiciones[jugadorActual] - 12;
-
-                    System.out.println(nuevaPosicionJugador());
-                    System.out.println("La categoría es " + categoriaActual());
-                    hacerPregunta();
-                } else {
-                    System.out.println(jugadores.get(jugadorActual) + " no sale de la casilla de castigo");
-                    estaSaliendoDeLaCarcel = false;
-                }
-
-            } else {
-
+                System.out.println(jugadores.get(jugadorActual) + " sale de la casilla de castigo");
                 posiciones[jugadorActual] = posiciones[jugadorActual] + puntosDado;
                 if (posiciones[jugadorActual] > 11) posiciones[jugadorActual] = posiciones[jugadorActual] - 12;
 
                 System.out.println(nuevaPosicionJugador());
                 System.out.println("La categoría es " + categoriaActual());
                 hacerPregunta();
+            } else {
+                System.out.println(jugadores.get(jugadorActual) + " no sale de la casilla de castigo");
+                estaSaliendoDeLaCarcel = false;
             }
 
+        } else {
+
+            posiciones[jugadorActual] = posiciones[jugadorActual] + puntosDado;
+            if (posiciones[jugadorActual] > 11) posiciones[jugadorActual] = posiciones[jugadorActual] - 12;
+
+            System.out.println(nuevaPosicionJugador());
+            System.out.println("La categoría es " + categoriaActual());
+            hacerPregunta();
         }
+
+    }
 
     private void hacerPregunta() {
         if (categoriaActual() == "Cultura popular")
@@ -111,7 +118,7 @@ public class Game {
     }
 
     public boolean fueRespuestaCorrecta() {
-        if (enCasillaCastigo[jugadorActual]){
+        if (enCasillaCastigo[jugadorActual]) {
             if (estaSaliendoDeLaCarcel) {
                 System.out.println("Respuesta correcta!!!!");
                 monederos[jugadorActual]++;
@@ -132,7 +139,6 @@ public class Game {
             }
 
 
-
         } else {
 
             System.out.println("Respuesta correcta!!!!");
@@ -150,9 +156,9 @@ public class Game {
         }
     }
 
-    public boolean respuestaIncorrecta(){
+    public boolean respuestaIncorrecta() {
         System.out.println("Respuesta incorrecta");
-        System.out.println(jugadores.get(jugadorActual)+ " va a la casilla de castigo");
+        System.out.println(jugadores.get(jugadorActual) + " va a la casilla de castigo");
         enCasillaCastigo[jugadorActual] = true;
 
         jugadorActual++;

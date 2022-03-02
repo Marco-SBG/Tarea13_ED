@@ -36,4 +36,22 @@ public class TrivialTests {
         sut.agregar("Maria");
         Assertions.assertFalse(sut.esJugable());
     }
+    @Test
+    public void si_hay_mas_de_6_jugadores_no_es_jugable() throws ArrayIndexOutOfBoundsException{
+        Game sut = new Game();
+        try {
+            sut.agregar("Maria");
+            sut.agregar("Juan");
+            sut.agregar("Luis");
+            sut.agregar("Alberto");
+            sut.agregar("Jose");
+            sut.agregar("Pepe");
+            sut.agregar("Paula");
+            sut.agregar("Daniel");
+        }
+        catch (ArrayIndexOutOfBoundsException exception){
+            System.out.println("");
+        }
+        Assertions.assertFalse(sut.esJugable());
+    }
 }
